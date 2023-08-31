@@ -22,8 +22,7 @@ export default class App extends Component {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
-
-  addContact = name => {
+  addContact = ({ name, number }) => {
     const existingContact = this.state.contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -35,7 +34,8 @@ export default class App extends Component {
 
     const newContact = {
       id: nanoid(),
-      name: name,
+      name,
+      number,
     };
 
     this.setState(prevState => ({
